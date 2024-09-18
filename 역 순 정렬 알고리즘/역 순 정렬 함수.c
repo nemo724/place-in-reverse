@@ -32,10 +32,10 @@ if (element_count % 2 == 0) { try_count = element_count / 2; }//구간 내 원�
 else if (element_count % 2 == 1) { try_count = (element_count / 2) + 1; }//구간 내 원소의 갯수가 홀수면 +1하여 가운데 수는 자기 자신끼리 바꾸게 함
 
 for (int i = 0; i < try_count; i++)
-{temporary_save = arr[real_index_max-i];//일단 교환 전 끝점-i값을 임시적으로 저장
-arr[real_index_max - i] = arr[real_index_min+i];//끝 점에 해당하는 원소값-i를 시작 점에 해당하는 원소값+i로 초기화
-arr[real_index_min + i] = temporary_save;//시작 점에 해당하는 원소값+i은 초기화 전 끝점-i값으로 초기화
-}
+{temporary_save = *((arr+real_index_max)-i);//일단 교환 전 끝점-i값을 임시적으로 저장
+*((arr+real_index_max) - i) = *((arr+real_index_min)+i);//끝 점에 해당하는 원소값-i를 시작 점에 해당하는 원소값+i로 초기화,
+*((arr+real_index_min) + i) = temporary_save;//시작 점에 해당하는 원소값+i은 초기화 전 끝점-i값으로 초기화
+}//참고로 배열 연산은 *((arr+real_index_max)-i)==arr[real_index_max-i]와 같다
 
 //바뀐 결과 값 출력
 printf("바뀐 배열의 결과는:");
